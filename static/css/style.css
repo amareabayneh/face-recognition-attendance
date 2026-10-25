@@ -1,0 +1,256 @@
+
+/* ---------- BODY ---------- */
+body{
+  font-family: 'Segoe UI', sans-serif;
+  background:#f9f9f9;
+}
+
+/* ---------- NAVBAR ---------- */
+/* Modify navbar height and font size */
+.navbar{
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(6px);
+  height:80px; /* increased height */
+}
+.navbar-brand{
+  font-weight:bold;
+  font-size:28px; /* increased brand size */
+}
+.nav-link{
+  color:white !important;
+  margin-right:20px;
+  font-size:18px; /* increased nav font size */
+}
+.nav-link.active{
+  color:#ffc107 !important; /* active nav color */
+}
+
+
+/* Mobile nav background for collapsed menu */
+@media (max-width: 991px) {
+  .navbar-collapse {
+    background: rgba(0,0,0,0.6); /* semi-transparent black */
+    backdrop-filter: blur(6px);   /* optional: blur effect */
+    padding: 15px;
+    border-radius: 10px;
+  }
+
+  .navbar-nav .nav-link {
+    color: white !important;
+    font-size: 18px;
+    margin: 10px 0;
+  }
+
+  .navbar-nav .nav-link.active,
+  .navbar-nav .nav-link:hover {
+    color: #ffc107 !important;
+  }
+}
+
+
+.text-yellow { color: #ffc107; }
+
+
+/* ---------- CAROUSEL ---------- */
+.carousel-img{
+  height:90vh; /* adjust to screen height */
+  object-fit:cover;
+}
+.carousel-caption{
+  background: rgba(0,0,0,0.5);
+  padding:30px;
+  border-radius:15px;
+}
+.carousel-title{
+  font-size:3rem;
+  font-weight:bold;
+  animation: fadeInDown 1s;
+}
+.carousel-text{
+  font-size:1.5rem;
+  animation: fadeInUp 1s;
+}
+
+/* Carousel Animations */
+@keyframes fadeInDown{
+  from{opacity:0; transform:translateY(-30px);}
+  to{opacity:1; transform:translateY(0);}
+}
+@keyframes fadeInUp{
+  from{opacity:0; transform:translateY(30px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+
+
+.services, .contacts, .about{
+  padding-top: 80px;
+}
+/* ---------- SERVICE CARDS ---------- */
+.service-card{
+  transition:0.4s;
+  border:none;
+  box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+.service-card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 10px 40px rgba(0,0,0,0.2);
+}
+
+/* ---------- FEATURED & HOW IT WORKS CARDS ---------- */
+.featured-card, .hw-card{
+  border:none;
+  border-radius:10px;
+  transition:0.5s;
+  box-shadow:0 5px 25px rgba(0,0,0,0.1);
+}
+.featured-card:hover, .hw-card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 10px 50px rgba(0,0,0,0.2);
+}
+
+/* ---------- TESTIMONIAL ---------- */
+.testimonial-img{
+  width:120px;
+  height:120px;
+  object-fit:cover;
+}
+
+
+/* Testimonials */
+.testimonial-card{ box-shadow:0 5px 25px rgba(0,0,0,0.1); transition:0.4s; border-radius:15px;}
+.testimonial-card:hover{ transform:translateY(-5px); }
+
+
+/* login */
+
+.login-card{
+max-width:400px;
+margin:auto;
+margin-top:120px;
+box-shadow:0 10px 40px rgba(0,0,0,0.3);
+border-radius:15px;
+}
+
+
+
+
+/* dashboard */
+.sidebar{
+  width:280px;
+  height:100vh;
+  
+  top: 0;
+  left: 0;
+  
+  background:rgba(0,0,0,0.7);
+  backdrop-filter: blur(5px);
+  color:white;
+  
+  padding-top: 20px;
+  padding-bottom: 50px;
+
+  transition: all 0.3s;
+  position: fixed;
+  z-index: 1000;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+}
+
+.sidebar a {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.sidebar a:hover{
+  background: black;
+  /*color: black;*/
+}
+
+.sidebar .nav-link.active {
+  background: #ffc107 !important;
+  color: #000 !important;
+  border-radius: 3%;
+}
+
+.sidebar.closed {
+    width: 70px;
+}
+
+.sidebar.closed a span,
+.sidebar.closed h4 {
+    display: none;
+}
+
+/* Dashboard content shift */
+.dashboard-content {
+    margin-left: 280px;
+    transition: margin-left 0.3s;
+}
+
+.sidebar.closed ~ .dashboard-content {
+    margin-left: 60px;
+}
+
+
+/* Responsive: auto collapse on small screens */
+@media (max-width: 768px) {
+    .sidebar {
+        left: -280px;
+    }
+    .sidebar.open {
+        left: 0;
+    }
+    .dashboard-content {
+        margin-left: 0;
+    }
+    .sidebar.open ~ .dashboard-content {
+        margin-left: 280px;
+    }
+}
+
+
+
+/* ---------- SCROLL TOP ---------- */
+#scrollTop{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#ffc107;
+  color:black;
+  border:none;
+  padding:10px 15px;
+  border-radius:50%;
+  display:none;
+}
+
+
+
+/* Footer */
+.footer{ 
+  background:#111; 
+  color:white; 
+  padding: 40px 20px 20px; 
+  position:relative; 
+  bottom:0; 
+  width:100%; 
+}
+.footer a{ 
+  color:white; 
+  text-decoration:none; 
+}
+.footer a:hover{ 
+  color:#ffc107; 
+  text-decoration:none; 
+}
+.footer hr{ 
+  border-color:rgba(255,255,255,0.2); 
+  margin:15px 0; 
+}
+

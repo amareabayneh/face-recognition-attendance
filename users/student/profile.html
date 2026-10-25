@@ -1,0 +1,476 @@
+<!-- PROFILE MODAL -->
+<div class="modal fade"
+     id="profileModal"
+     data-bs-backdrop="static">
+
+    <div class="modal-dialog modal-lg">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5>My Profile</h5>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label>First Name</label>
+
+                        <input type="text"
+                               id="profile_first_name"
+                               class="form-control">
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <label>Last Name</label>
+
+                        <input type="text"
+                               id="profile_last_name"
+                               class="form-control">
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label>Username</label>
+
+                        <input type="text"
+                               id="profile_username"
+                               class="form-control">
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <label>Email</label>
+
+                        <input type="email"
+                               id="profile_email"
+                               class="form-control">
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label>Phone</label>
+
+                        <input type="text"
+                               id="profile_phone"
+                               class="form-control">
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <label>Gender</label>
+
+                        <select id="profile_gender"
+                                class="form-control">
+
+                            <option value="">Select</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label>Date of Birth</label>
+
+                        <input type="date"
+                               id="profile_dob"
+                               class="form-control">
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <label>Photo</label>
+
+                        <input type="file"
+                               id="profile_photo"
+                               class="form-control">
+
+                    </div>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label>Address</label>
+
+                    <textarea id="profile_address"
+                              class="form-control"></textarea>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label>Bio</label>
+
+                    <textarea id="profile_bio"
+                              class="form-control"></textarea>
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+
+                    Close
+
+                </button>
+
+                <button class="btn btn-primary"
+                        onclick="updateProfile()">
+
+                    Update Profile
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- CHANGE PASSWORD MODAL -->
+<div class="modal fade"
+     id="changePasswordModal">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5>Change Password</h5>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="mb-3">
+
+                    <label>Current Password</label>
+
+                    <input type="password"
+                           id="current_password"
+                           class="form-control">
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label>New Password</label>
+
+                    <input type="password"
+                           id="new_password"
+                           class="form-control">
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+
+                    Close
+
+                </button>
+
+                <button class="btn btn-success"
+                        onclick="changeMyPassword()">
+
+                    Change Password
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script>
+    
+function openProfileModal(){
+
+    fetch("../../backend/process.php?action=my_profile")
+
+    .then(res => res.json())
+    // .then(res => console.log(res))
+
+    .then(user => {
+
+        document.getElementById("profile_first_name").value =
+        user.first_name ?? "";
+
+        document.getElementById("profile_last_name").value =
+        user.last_name ?? "";
+
+        document.getElementById("profile_username").value =
+        user.username ?? "";
+
+        document.getElementById("profile_email").value =
+        user.email ?? "";
+
+        document.getElementById("profile_phone").value =
+        user.phone ?? "";
+
+        document.getElementById("profile_gender").value =
+        user.gender ?? "";
+
+        document.getElementById("profile_dob").value =
+        user.date_of_birth ?? "";
+
+        document.getElementById("profile_address").value =
+        user.address ?? "";
+
+        document.getElementById("profile_bio").value =
+        user.bio ?? "";
+
+        new bootstrap.Modal(
+            document.getElementById("profileModal")
+        ).show();
+
+    });
+
+}
+
+
+
+function updateProfile(){
+
+    let formData = new FormData();
+
+    formData.append(
+        "first_name",
+        document.getElementById("profile_first_name").value
+    );
+
+    formData.append(
+        "last_name",
+        document.getElementById("profile_last_name").value
+    );
+
+    formData.append(
+        "username",
+        document.getElementById("profile_username").value
+    );
+
+    formData.append(
+        "email",
+        document.getElementById("profile_email").value
+    );
+
+    formData.append(
+        "phone",
+        document.getElementById("profile_phone").value
+    );
+
+    formData.append(
+        "gender",
+        document.getElementById("profile_gender").value
+    );
+
+    formData.append(
+        "date_of_birth",
+        document.getElementById("profile_dob").value
+    );
+
+    formData.append(
+        "address",
+        document.getElementById("profile_address").value
+    );
+
+    formData.append(
+        "bio",
+        document.getElementById("profile_bio").value
+    );
+
+    formData.append(
+        "photo",
+        document.getElementById("profile_photo").files[0]
+    );
+
+    formData.append(
+        "action",
+        "update_my_profile"
+    );
+
+    fetch("../../backend/process.php",{
+        method:"POST",
+        body:formData
+    })
+
+    .then(res => res.json())
+    // .then(res => console.log(res))
+
+    .then(data => {
+
+        if(data.status == "error"){
+
+            Swal.fire(
+                "Error",
+                data.message,
+                "error"
+            );
+
+            return;
+        }
+
+        Swal.fire(
+            "Success",
+            data.message,
+            "success"
+        );
+
+        document.getElementById("navUserName")
+        .innerText =
+        data.username;
+
+        bootstrap.Modal
+        .getInstance(
+            document.getElementById("profileModal")
+        ).hide();
+
+    });
+
+}
+
+
+
+function openChangePasswordModal(){
+
+    document.getElementById("current_password").value = "";
+
+    document.getElementById("new_password").value = "";
+
+    new bootstrap.Modal(
+        document.getElementById("changePasswordModal")
+    ).show();
+
+}
+
+
+
+function changeMyPassword(){
+
+    let formData = new FormData();
+
+    formData.append(
+        "current_password",
+        document.getElementById("current_password").value
+    );
+
+    formData.append(
+        "new_password",
+        document.getElementById("new_password").value
+    );
+
+    formData.append(
+        "action",
+        "change_my_password"
+    );
+
+    fetch("../../backend/process.php",{
+        method:"POST",
+        body:formData
+    })
+
+    .then(res => res.json())
+
+    .then(data => {
+
+        if(data.status == "error"){
+
+            Swal.fire(
+                "Error",
+                data.message,
+                "error"
+            );
+
+            return;
+        }
+
+        Swal.fire(
+            "Success",
+            data.message,
+            "success"
+        );
+
+        bootstrap.Modal
+        .getInstance(
+            document.getElementById("changePasswordModal")
+        ).hide();
+
+    });
+
+}
+
+
+
+function loadNavProfile(){
+
+    fetch("../../backend/process.php?action=my_profile")
+
+    .then(res => res.json())
+
+    .then(user => {
+
+        document.getElementById("navUserName")
+        .innerText =
+        user.first_name
+        ? user.first_name
+        : user.username;
+
+        /* PROFILE PHOTO */
+
+        let photo =
+        user.profile_photo
+        ? "../../uploads/profiles/" + user.profile_photo
+        : "../../static/img/default.jpg";
+
+        document.getElementById("navProfilePhoto")
+        .src = photo;
+
+    });
+
+}
+
+
+
+loadNavProfile();
+
+
+</script>
